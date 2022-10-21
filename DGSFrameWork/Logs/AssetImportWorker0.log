@@ -412,3 +412,9 @@ AssetImportParameters requested are different than current active one (requested
   custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
   custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
   custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 1297.873400 seconds.
+  path: Assets/Scenes/PUNExtensionDemo.unity
+  artifactKey: Guid(0688d1035464b4f8695b9952138207f4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/PUNExtensionDemo.unity using Guid(0688d1035464b4f8695b9952138207f4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '973633817c9bfc9edf9b951f386e5a80') in 0.032913 seconds 
