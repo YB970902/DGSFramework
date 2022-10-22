@@ -116,6 +116,10 @@ public class DGSServerManager : MonoBehaviourPun, IOnEventCallback
         ServerData.IServerData data = null;
 
         // 여기에 조건문 추가
+        if(key == DefineServerData.RES_REGISTER_MY_INFO)
+        {
+            data = new ServerData.RegisterResult();
+        }
         
         data.SetData((object[])photonEvent.CustomData);
 
@@ -143,5 +147,18 @@ public class DGSServerManager : MonoBehaviourPun, IOnEventCallback
         int sender = photonEvent.Sender;
 
         // 여기에 조건문 추가
+        if(key == DefineServerData.REQ_REGISTER_MY_INFO)
+        {
+            var userInfo = new ServerData.UserInfo();
+            userInfo.SetData((object[])photonEvent.CustomData);
+
+            // 확인
+
+            var registerResult = new ServerData.RegisterResult();
+            registerResult.Set("SUCCESSED!");
+
+            Send(DefineServerData.RES_REGISTER_MY_INFO, registerResult, sender);
+            //Send(DefineServerData.RES_NEW_USER_INFO, userInfo, ReceiverGroup.All);
+        }
     }
 }

@@ -316,7 +316,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 331274066}
-  - component: {fileID: 331274065}
+  - component: {fileID: 331274067}
   m_Layer: 0
   m_Name: PUNLobbyManager
   m_TagString: Untagged
@@ -324,20 +324,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &331274065
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 331274064}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6796e46bea374c8da87b70f94f551df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _name: PlayerOne
-  _level: 100
 --- !u!4 &331274066
 Transform:
   m_ObjectHideFlags: 0
@@ -353,6 +339,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &331274067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 331274064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50bfb2577e29049fba7f3068d2ff65f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _id: 10
+  _level: 100
+  _name: TESTER
 --- !u!1 &664846932
 GameObject:
   m_ObjectHideFlags: 0
