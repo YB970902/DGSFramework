@@ -31,11 +31,18 @@ public class ServerManager : MonoBehaviourPunCallbacks
         userInfo.Set(_id, _level, _name);
         DGSServerManager.Instance.Send(DefineServerData.REQ_REGISTER_MY_INFO, userInfo, ReceiverGroup.MasterClient);
         DGSServerManager.Instance.AddListener(DefineServerData.RES_REGISTER_MY_INFO, OnResponseRegisterMyInfo);
+        DGSServerManager.Instance.AddListener(DefineServerData.RES_NEW_USER_INFO, OnResponseNewUserInfo);
     }
 
     void OnResponseRegisterMyInfo(ServerData.IServerData data)
     {
         var result = data as ServerData.RegisterResult;
         Debug.Log(result.Message);
+    }
+
+    void OnResponseNewUserInfo(ServerData.IServerData data)
+    {
+        var userInfo = data as ServerData.UserInfo;
+        Debug.Log($"ID : {userInfo.ID} Level : {userInfo.Level} Name : {userInfo.Name}");
     }
 }

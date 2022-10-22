@@ -120,6 +120,10 @@ public class DGSServerManager : MonoBehaviourPun, IOnEventCallback
         {
             data = new ServerData.RegisterResult();
         }
+        else if(key == DefineServerData.RES_NEW_USER_INFO)
+        {
+            data = new ServerData.UserInfo();
+        }
         
         data.SetData((object[])photonEvent.CustomData);
 
@@ -158,7 +162,7 @@ public class DGSServerManager : MonoBehaviourPun, IOnEventCallback
             registerResult.Set("SUCCESSED!");
 
             Send(DefineServerData.RES_REGISTER_MY_INFO, registerResult, sender);
-            //Send(DefineServerData.RES_NEW_USER_INFO, userInfo, ReceiverGroup.All);
+            Send(DefineServerData.RES_NEW_USER_INFO, userInfo, ReceiverGroup.All, EventCaching.AddToRoomCache);
         }
     }
 }
