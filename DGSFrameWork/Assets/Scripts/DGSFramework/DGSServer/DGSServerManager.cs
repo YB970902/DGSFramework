@@ -37,9 +37,16 @@ public class DGSServerManager : MonoBehaviourPun, IOnEventCallback
 
     private Dictionary<byte, List<System.Action<ServerData.IServerData>>> _dictCallback = new Dictionary<byte, List<System.Action<ServerData.IServerData>>>();
 
-    public void Request(byte key, ServerData.IServerData serverData, ReceiverGroup group, EventCaching caching = EventCaching.DoNotCache)
+    public void Send(byte key, ServerData.IServerData serverData, ReceiverGroup group, EventCaching caching = EventCaching.DoNotCache)
     {
         RaiseEventOptions raiseEventOptions = new RaiseEventOptions { Receivers = group, CachingOption = caching };
+        SendOptions sendOptions = new SendOptions { Reliability = true };
+        PhotonNetwork.RaiseEvent(key, serverData.ToCustomData(), raiseEventOptions, sendOptions);
+    }
+
+    public void Send(byte key, ServerData.IServerData serverData, int sender, EventCaching caching = EventCaching.DoNotCache)
+    {
+        RaiseEventOptions raiseEventOptions = new RaiseEventOptions { TargetActors = new int[] { sender }, CachingOption = caching };
         SendOptions sendOptions = new SendOptions { Reliability = true };
         PhotonNetwork.RaiseEvent(key, serverData.ToCustomData(), raiseEventOptions, sendOptions);
     }
@@ -124,19 +131,5 @@ public class DGSServerManager : MonoBehaviourPun, IOnEventCallback
         int sender = photonEvent.Sender;
 
         // 여기에 조건문 추가
-    }
-
-    void SendEventToSender(byte key, int sender, ServerData.IServerData data, EventCaching caching = EventCaching.DoNotCache)
-    {
-        RaiseEventOptions raiseEventOptions = new RaiseEventOptions { TargetActors = new int[] { sender }, CachingOption = caching };
-        SendOptions sendOptions = new SendOptions { Reliability = true };
-        PhotonNetwork.RaiseEvent(key, data.ToCustomData(), raiseEventOptions, sendOptions);
-    }
-
-    void SendEventToGroup(byte key, ReceiverGroup group, ServerData.IServerData data, EventCaching caching = EventCaching.DoNotCache)
-    {
-        RaiseEventOptions raiseEventOptions = new RaiseEventOptions { Receivers = group, CachingOption = caching };
-        SendOptions sendOptions = new SendOptions { Reliability = true };
-        PhotonNetwork.RaiseEvent(key, data.ToCustomData(), raiseEventOptions, sendOptions);
     }
 }
