@@ -96,16 +96,8 @@ public class DGSServerManager : MonoBehaviourPun, IOnEventCallback
 
         ServerData.IServerData data = null;
 
-        /// 새로운 키가 추가되면 여기에 값을 추가
-        if (key == DefineServerData.RES_PLAYER_INFO)
-        {
-            data = new ServerData.PlayerInfo();
-        }
-        else if(key == DefineServerData.RES_REGISTER_INFO)
-        {
-            data = new ServerData.RegisterInfo();
-        }
-
+        // 여기에 조건문 추가
+        
         data.SetData((object[])photonEvent.CustomData);
 
         if(_dictCallback.ContainsKey(key) == false)
@@ -131,22 +123,7 @@ public class DGSServerManager : MonoBehaviourPun, IOnEventCallback
 
         int sender = photonEvent.Sender;
 
-        /// 새로운 키가 추가되면 여기에 값을 추가
-        if (key == DefineServerData.REQ_PLAYER_INFO)
-        {
-            
-        }
-        else if (key == DefineServerData.REQ_REGISTER_INFO)
-        {
-            var registerInfo = new ServerData.RegisterInfo();
-            registerInfo.Set("SUCCESS");
-
-            var playerInfo = new ServerData.PlayerInfo();
-            playerInfo.SetData((object[])photonEvent.CustomData);
-
-            SendEventToSender(DGS.Define.DefineServerData.RES_REGISTER_INFO, sender, registerInfo);
-            SendEventToGroup(DefineServerData.RES_PLAYER_INFO, ReceiverGroup.All, playerInfo, EventCaching.AddToRoomCache);
-        }
+        // 여기에 조건문 추가
     }
 
     void SendEventToSender(byte key, int sender, ServerData.IServerData data, EventCaching caching = EventCaching.DoNotCache)
