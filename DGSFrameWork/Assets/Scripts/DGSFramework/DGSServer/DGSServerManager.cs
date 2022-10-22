@@ -86,6 +86,18 @@ public class DGSServerManager : MonoBehaviourPun, IOnEventCallback
         _dictCallback[key].Clear();
     }
 
+    /// <summary>
+    /// 캐시된 이벤트를 지울 수 있는 함수
+    /// </summary>
+    /// <param name="key">지울 이벤트의 key / 0이되면 모든 이벤트를 지운다</param>
+    /// <param name="sender">지울 이벤트의 전송자 / 0이되면 글로벌 이벤트를 지운다</param>
+    public void RemoveCachedEvent(byte key, int sender)
+    {
+        RaiseEventOptions raiseEventOptions = new RaiseEventOptions { TargetActors = new int[] { sender }, CachingOption = EventCaching.RemoveFromRoomCache };
+        SendOptions sendOptions = new SendOptions { Reliability = true };
+        PhotonNetwork.RaiseEvent(key, null, raiseEventOptions, sendOptions);
+    }
+
     public void OnEvent(EventData photonEvent)
     {
         byte key = photonEvent.Code;
